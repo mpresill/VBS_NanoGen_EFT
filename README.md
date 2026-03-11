@@ -3,6 +3,30 @@
 References for NanoGEN: https://twiki.cern.ch/twiki/bin/viewauth/CMS/NanoGen, https://indico.cern.ch/event/962610/contributions/4325186/attachments/2235981/3789869/MG5%20tutorial(1).pdf, https://github.com/FNALLPC/cmseft 
 NanoGEN is a very convenient format for exploratory studies. The event content of the flat trees is similar to the generator infomration in NanoAOD, but much faster generation time because the detector simulation and reconstruction is being skipped.
 
+References to setup the validation chain needed for EFT samples: https://indico.cern.ch/event/1602054/contributions/6877388/attachments/3210205/5718109/TopPAG_EFTValidation.pdf 
+
+Goals of the validation:
+* Produce a sample that isn’t dominated by very large or very small weights 
+* Validate the EFT sample reweighted to the SM point against approved central samples - following our publication https://arxiv.org/pdf/2406.14620 "LHC EFT WG Note: SMEFT predictions, event reweighting, and
+simulation"
+* Validate the EFT parameterization of the sample (i.e. check that the $\sigma_{EFT}$ scales appropriately to the polynomial formula)
+
+
+# Run 3 test setup:
+
+
+## Generating EDM GEN files 
+Gridpack to be tested as example from VBS semileptonic final state can be found here: `/afs/cern.ch/work/m/mpresill/public/Run3_dim6_semileptonic_gridpacks/wmzjjdim6_ewk_el8_amd64_gcc10_CMSSW_12_4_8_tarball.tar.xz`.
+Producing GEN files from the above gridpack is usually straight forward and similar to other CMS samples. We will use a fragment file that defines the settings that will be used for decays, parton shower and hadronization in pythia.
+
+Run 3 fragments are taken from these [chains](https://gitlab.cern.ch/cms-gen/mccm/-/issues?sort=created_date&state=opened&search=%5BSMP%5D+VBS&first_page_size=20&show=eyJpaWQiOiIxMTk1IiwiZnVsbF9wYXRoIjoiY21zLWdlbi9tY2NtIiwiaWQiOjM1OTIxN30%3D) 
+e.g. for Summer23: https://cms-pdmv-prod.web.cern.ch/mcm/requests?prepid=SMP-Run3Summer23wmLHEGS-00186&page=0&shown=127 , processed with CMSSW release `CMSSW_13_0_24`.
+
+
+
+
+
+# Various examples from Run 2:
 ## Setup from Davide to keep LHE Reweighting Weights
 
 ```sh
@@ -34,9 +58,6 @@ git clone git@github.com:mpresill/VBShadNanoGen.git #or just create your fragmen
 scram b
 ```
 
-
-
-# Various examples:
 ## Setup to run NanoGen with default weights
 
 ```sh
